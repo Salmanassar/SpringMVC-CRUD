@@ -10,10 +10,10 @@ import javax.persistence.TypedQuery;
 import java.util.List;
 
 @Repository
-public class DaoImpl implements Dao<User> {
+public class DaoUserImpl implements DaoUser {
 
     @PersistenceContext
-    EntityManager entityManager;
+    private EntityManager entityManager;
 
     @Autowired
     public EntityManager getEntityManager() {
@@ -21,30 +21,29 @@ public class DaoImpl implements Dao<User> {
     }
 
     @Override
-    public void create(User user) {
+    public void createUser(User user) {
         entityManager.persist(user);
     }
 
     @Override
-    public User read(long id) {
+    public User readUser(long id) {
         return (User) entityManager.createQuery("from User where id=:id")
                 .setParameter("id", id)
                 .getSingleResult();
     }
-
     @Override
-    public void update(User user) {
+    public void updateUser(User user) {
         entityManager.merge(user);
     }
 
     @Override
-    public void delete(long id) {
-        User user = read(id);
+    public void deleteUser(Integer id) {
+        User user = readUser(id);
         entityManager.remove(user);
     }
 
     @Override
-    public List<User> listAll() {
+    public List<User> listUsers() {
         TypedQuery<User> query =
                 entityManager.createQuery("SELECT u FROM User u", User.class);
         return query.getResultList();

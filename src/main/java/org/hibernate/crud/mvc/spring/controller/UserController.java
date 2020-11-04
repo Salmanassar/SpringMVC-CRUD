@@ -34,7 +34,7 @@ public class UserController {
     }
 
     @RequestMapping(path = {"/edit", "/edit/{id}"})
-    public String editEmployeeById(Model model, @PathVariable("id") Optional<Long> id) {
+    public String editEmployeeById(Model model, @PathVariable("id") Optional<Integer> id) {
         if (id.isPresent()) {
             User user = userService.readUser(id.get());
             model.addAttribute("user", user);
@@ -45,7 +45,7 @@ public class UserController {
     }
 
     @RequestMapping(path = "/delete/{id}")
-    public String deleteEmployeeById(Model model, @PathVariable("id") Long id) {
+    public String deleteEmployeeById(Model model, @PathVariable("id") Integer id) {
         userService.deleteUser(id);
         return "redirect:/";
     }

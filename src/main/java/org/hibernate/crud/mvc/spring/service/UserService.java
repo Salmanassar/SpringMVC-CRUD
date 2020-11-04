@@ -8,11 +8,11 @@ public interface UserService {
 
     void createNewUser(User user);
 
-    User readUser(long id);
+    User readUser(Integer id);
 
     void updateUser(User user);
 
-    void deleteUser(long id);
+    void deleteUser(Integer id);
 
     List<User> usersList();
 }

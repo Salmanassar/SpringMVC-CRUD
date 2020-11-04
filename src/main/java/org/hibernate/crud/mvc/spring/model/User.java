@@ -30,13 +30,6 @@ public class User {
     @Column(name = "age")
     @NotNull(message="Year of birth must be specified.")
     private Integer year;
-
-    public User(String name, String lastName, int year) {
-        this.name = name;
-        this.lastName = lastName;
-        this.year = year;
-    }
-
 }
 
 
